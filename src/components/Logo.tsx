@@ -1,18 +1,18 @@
-import logo from "@/assets/logo/egmart-logo.jpeg";
+import logo from "@/assets/logo/srimart.png";
 
 interface Props {
   className?: string;
   variant?: "default" | "white";
 }
 
-const Logo = ({ className = "h-10 w-auto", variant = "default" }: Props) => {
+const Logo = ({ className = "h-12 w-auto", variant = "default" }: Props) => {
   return (
     <img
       src={logo}
-      alt="Egmart by Yazz"
-      className={`${className} object-contain ${variant === "white" ? "bg-white rounded-md p-1" : ""}`}
-      width={400}
-      height={400}
+      alt="Egmart"
+      className={`${className} object-contain ${variant === "white" ? "bg-white rounded-lg p-1.5" : ""}`}
+      width={503}
+      height={496}
     />
   );
 };

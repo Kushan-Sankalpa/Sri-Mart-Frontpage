@@ -13,22 +13,22 @@ interface Props {
 }
 
 const PromoBanner = ({ image, eyebrow, title, subtitle, cta, link, align = "left" }: Props) => (
-  <section className="relative w-full h-[340px] md:h-[400px] overflow-hidden">
-    <img src={image} alt={title} loading="lazy" className="absolute inset-0 w-full h-full object-cover" />
+  <section className="relative h-[340px] w-full overflow-hidden md:h-[400px]">
+    <img src={image} alt={title} loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
     <div
       className={`absolute inset-0 ${
         align === "right"
-          ? "bg-gradient-to-l from-white/90 via-white/60 to-transparent"
-          : "bg-gradient-to-r from-secondary/90 via-secondary/50 to-transparent"
+          ? "bg-gradient-to-l from-white/95 via-white/65 to-transparent"
+          : "bg-gradient-to-r from-secondary/95 via-secondary/55 to-transparent"
       }`}
     />
-    <div className="relative h-full container mx-auto px-6 flex items-center">
+    <div className="container relative mx-auto flex h-full items-center px-6">
       <div className={`max-w-lg ${align === "right" ? "ml-auto text-right text-secondary" : "text-secondary-foreground"}`}>
-        <div className={`flex items-center gap-3 mb-4 ${align === "right" ? "justify-end" : ""}`}>
-          <Logo className="h-8 w-auto" variant={align === "right" ? "default" : "white"} />
-          <span className="text-[11px] uppercase tracking-[0.25em] font-bold text-primary">{eyebrow}</span>
+        <div className={`mb-4 flex items-center gap-3 ${align === "right" ? "justify-end" : ""}`}>
+          <Logo className="h-10 w-auto max-w-[120px]" variant={align === "right" ? "default" : "white"} />
+          <span className="text-[11px] font-bold uppercase text-primary">{eyebrow}</span>
         </div>
-        <h2 className="text-3xl md:text-5xl font-bold leading-tight">{title}</h2>
+        <h2 className="text-3xl font-bold leading-tight md:text-5xl">{title}</h2>
         <p className={`mt-4 text-base md:text-lg ${align === "right" ? "text-secondary/70" : "text-secondary-foreground/80"}`}>
           {subtitle}
         </p>

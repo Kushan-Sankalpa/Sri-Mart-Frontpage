@@ -29,12 +29,12 @@ const Cart = () => {
       <div className="grid lg:grid-cols-[1fr_380px] gap-8">
         <div className="space-y-4">
           {items.map(({ product, qty }) => (
-            <div key={product.id} className="flex gap-4 bg-card border border-border rounded-2xl p-4 shadow-soft">
-              <Link to={`/product/${product.slug}`} className="h-24 w-24 md:h-28 md:w-28 bg-muted rounded-xl overflow-hidden shrink-0">
+            <div key={product.id} className="flex gap-4 bg-card border border-border rounded-lg p-4 shadow-soft">
+              <Link to={`/product/${product.slug}`} className="h-24 w-24 md:h-28 md:w-28 bg-white rounded-lg overflow-hidden shrink-0">
                 <img src={product.images[0]} alt={product.name} className="w-full h-full object-contain p-2" />
               </Link>
               <div className="flex-1 min-w-0 flex flex-col">
-                <p className="text-[11px] uppercase tracking-wider text-muted-foreground font-medium">{product.brand}</p>
+                <p className="text-[11px] uppercase text-muted-foreground font-medium">{product.brand}</p>
                 <Link to={`/product/${product.slug}`} className="font-semibold hover:text-primary line-clamp-2">{product.name}</Link>
                 <p className="text-sm font-bold text-primary mt-1">{formatLKR(product.price)}</p>
                 <div className="mt-auto flex items-center justify-between gap-3 pt-3">
@@ -63,7 +63,7 @@ const Cart = () => {
           ))}
         </div>
 
-        <aside className="bg-card border border-border rounded-2xl p-6 h-fit shadow-card sticky top-28">
+        <aside className="bg-card border border-border rounded-lg p-6 h-fit shadow-card sticky top-28">
           <h3 className="font-bold text-lg mb-4">Order Summary</h3>
           <div className="space-y-3 text-sm">
             <div className="flex justify-between">
@@ -85,7 +85,7 @@ const Cart = () => {
           <Button asChild variant="outline" size="lg" className="w-full mt-3 rounded-full">
             <Link to="/products">Continue Shopping</Link>
           </Button>
-          <button onClick={clear} className="w-full text-xs text-muted-foreground hover:text-primary mt-4 uppercase tracking-wider font-bold">
+          <button onClick={clear} className="w-full text-xs text-muted-foreground hover:text-primary mt-4 uppercase font-bold">
             Clear cart
           </button>
         </aside>

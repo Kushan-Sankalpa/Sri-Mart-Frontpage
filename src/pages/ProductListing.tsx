@@ -29,6 +29,10 @@ const ProductListing = () => {
     setFilters((f) => ({ ...f, category: cat }));
   }, [cat]);
 
+  useEffect(() => {
+    setSearch(initialQ);
+  }, [initialQ]);
+
   const list = useMemo(() => {
     let r = products.slice();
     if (filters.category) r = r.filter((p) => p.category === filters.category);
@@ -42,7 +46,6 @@ const ProductListing = () => {
     }
     if (sort === "price-asc") r.sort((a, b) => a.price - b.price);
     else if (sort === "price-desc") r.sort((a, b) => b.price - a.price);
-    else if (sort === "rating") r.sort((a, b) => b.rating - a.rating);
     return r;
   }, [filters, sort, search]);
 
@@ -62,8 +65,8 @@ const ProductListing = () => {
     <div>
       <section className="bg-secondary text-secondary-foreground py-14 md:py-20">
         <div className="container mx-auto px-4">
-          <p className="text-xs uppercase tracking-[0.3em] text-primary font-bold mb-3">Egmart Catalogue</p>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">{title}</h1>
+          <p className="text-xs uppercase text-primary font-bold mb-3">Egmart Catalogue</p>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">{title}</h1>
           <p className="mt-4 text-secondary-foreground/70 max-w-xl">{subtitle}</p>
         </div>
       </section>
@@ -75,7 +78,7 @@ const ProductListing = () => {
             <input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search products..."
+              placeholder="Search products by name or brand..."
               className="w-full bg-muted rounded-full pl-11 pr-4 py-3 text-sm outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
@@ -87,7 +90,6 @@ const ProductListing = () => {
             <option value="relevance">Sort: Relevance</option>
             <option value="price-asc">Price: Low to High</option>
             <option value="price-desc">Price: High to Low</option>
-            <option value="rating">Top Rated</option>
           </select>
           <button
             onClick={() => setDrawer(true)}

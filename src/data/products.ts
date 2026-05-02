@@ -1,4 +1,4 @@
-// Sample product catalog for Egmart by Yazz
+// Sample product catalog for Egmart
 import phone1 from "@/assets/images/products/phone-1.jpg";
 import phone2 from "@/assets/images/products/phone-2.jpg";
 import phone3 from "@/assets/images/products/phone-3.jpg";
@@ -17,6 +17,7 @@ import cosm3 from "@/assets/images/products/cosm-3.jpg";
 import cosm4 from "@/assets/images/products/cosm-4.jpg";
 
 export type Condition = "Brand New" | "Used";
+
 export interface Product {
   id: string;
   name: string;
@@ -26,7 +27,6 @@ export interface Product {
   condition?: Condition;
   price: number;
   stock: number;
-  rating: number;
   images: string[];
   description: string;
   specifications: Record<string, string>;
@@ -40,7 +40,6 @@ const cosmImgs = [cosm1, cosm2, cosm3, cosm4];
 
 const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 
-// MOBILE PHONES — 8 brand new + 8 used
 const phoneSeed: Array<{ name: string; brand: string; price: number; condition: Condition }> = [
   { name: "iPhone 15 Pro Max 256GB", brand: "Apple", price: 485000, condition: "Brand New" },
   { name: "iPhone 15 128GB", brand: "Apple", price: 320000, condition: "Brand New" },
@@ -60,7 +59,6 @@ const phoneSeed: Array<{ name: string; brand: string; price: number; condition: 
   { name: "Vivo X80", brand: "Vivo", price: 89000, condition: "Used" },
 ];
 
-// CHOCOLATES — 16 (4 per brand)
 const chocSeed: Array<{ name: string; brand: string; price: number }> = [
   { name: "KitKat Chunky Milk", brand: "KitKat", price: 850 },
   { name: "KitKat 4-Finger Dark", brand: "KitKat", price: 720 },
@@ -80,7 +78,6 @@ const chocSeed: Array<{ name: string; brand: string; price: number }> = [
   { name: "Toblerone Tiny Pouch", brand: "Toblerone", price: 1750 },
 ];
 
-// SHOES — 16 (4 per brand)
 const shoeSeed: Array<{ name: string; brand: string; price: number }> = [
   { name: "Nike Air Max 270", brand: "Nike", price: 38500 },
   { name: "Nike Pegasus 40", brand: "Nike", price: 42000 },
@@ -100,20 +97,19 @@ const shoeSeed: Array<{ name: string; brand: string; price: number }> = [
   { name: "Converse One Star Pro", brand: "Converse", price: 19800 },
 ];
 
-// COSMETICS — 16 (4 per brand)
 const cosmSeed: Array<{ name: string; brand: string; price: number }> = [
   { name: "Maybelline SuperStay Matte Ink", brand: "Maybelline", price: 3850 },
   { name: "Maybelline Fit Me Foundation", brand: "Maybelline", price: 4250 },
   { name: "Maybelline Lash Sensational Mascara", brand: "Maybelline", price: 3450 },
   { name: "Maybelline Master Chrome Highlighter", brand: "Maybelline", price: 2950 },
-  { name: "L'Oréal Infallible 24H Foundation", brand: "L'Oréal", price: 5850 },
-  { name: "L'Oréal Color Riche Lipstick", brand: "L'Oréal", price: 3650 },
-  { name: "L'Oréal Voluminous Mascara", brand: "L'Oréal", price: 3950 },
-  { name: "L'Oréal La Palette Nude", brand: "L'Oréal", price: 6850 },
-  { name: "Lakmé Absolute Perfect Radiance", brand: "Lakmé", price: 2950 },
-  { name: "Lakmé 9 to 5 Lipstick", brand: "Lakmé", price: 1850 },
-  { name: "Lakmé Eyeconic Kajal", brand: "Lakmé", price: 950 },
-  { name: "Lakmé Sun Expert SPF 50", brand: "Lakmé", price: 1750 },
+  { name: "L'Oreal Infallible 24H Foundation", brand: "L'Oreal", price: 5850 },
+  { name: "L'Oreal Color Riche Lipstick", brand: "L'Oreal", price: 3650 },
+  { name: "L'Oreal Voluminous Mascara", brand: "L'Oreal", price: 3950 },
+  { name: "L'Oreal La Palette Nude", brand: "L'Oreal", price: 6850 },
+  { name: "Lakme Absolute Perfect Radiance", brand: "Lakme", price: 2950 },
+  { name: "Lakme 9 to 5 Lipstick", brand: "Lakme", price: 1850 },
+  { name: "Lakme Eyeconic Kajal", brand: "Lakme", price: 950 },
+  { name: "Lakme Sun Expert SPF 50", brand: "Lakme", price: 1750 },
   { name: "Garnier BB Cream Miracle Skin", brand: "Garnier", price: 2450 },
   { name: "Garnier Micellar Cleansing Water", brand: "Garnier", price: 1950 },
   { name: "Garnier Skin Naturals Serum", brand: "Garnier", price: 2850 },
@@ -122,6 +118,7 @@ const cosmSeed: Array<{ name: string; brand: string; price: number }> = [
 
 const buildProducts = (): Product[] => {
   const out: Product[] = [];
+
   phoneSeed.forEach((p, i) => {
     const img = phoneImgs[i % 4];
     out.push({
@@ -133,9 +130,8 @@ const buildProducts = (): Product[] => {
       condition: p.condition,
       price: p.price,
       stock: 5 + ((i * 7) % 20),
-      rating: 4 + ((i * 13) % 10) / 10,
       images: [img, phoneImgs[(i + 1) % 4], phoneImgs[(i + 2) % 4]],
-      description: `Experience next-level performance with the ${p.name}. Stunning display, flagship cameras, and all-day battery life — backed by Egmart's authenticity guarantee.`,
+      description: `Experience next-level performance with the ${p.name}. Stunning display, flagship cameras, and all-day battery life - backed by Egmart's authenticity guarantee.`,
       specifications: {
         Display: '6.7" OLED 120Hz',
         Storage: i % 2 === 0 ? "256GB" : "128GB",
@@ -146,6 +142,7 @@ const buildProducts = (): Product[] => {
       },
     });
   });
+
   chocSeed.forEach((p, i) => {
     const img = chocImgs[i % 4];
     out.push({
@@ -156,12 +153,12 @@ const buildProducts = (): Product[] => {
       brand: p.brand,
       price: p.price,
       stock: 25 + ((i * 11) % 60),
-      rating: 4.3 + ((i * 9) % 7) / 10,
       images: [img, chocImgs[(i + 1) % 4], chocImgs[(i + 2) % 4]],
       description: `Indulge in the rich, velvety taste of ${p.name}. Premium ingredients, perfect for gifting or treating yourself.`,
       specifications: { Brand: p.brand, Type: "Chocolate", Origin: "Imported", Storage: "Cool & Dry Place" },
     });
   });
+
   shoeSeed.forEach((p, i) => {
     const img = shoeImgs[i % 4];
     out.push({
@@ -172,13 +169,13 @@ const buildProducts = (): Product[] => {
       brand: p.brand,
       price: p.price,
       stock: 8 + ((i * 5) % 25),
-      rating: 4.4 + ((i * 11) % 6) / 10,
       images: [img, shoeImgs[(i + 1) % 4], shoeImgs[(i + 2) % 4]],
       description: `Step out in style with the ${p.name}. Comfort-first cushioning, durable build, and a silhouette designed to turn heads.`,
       specifications: { Brand: p.brand, Material: "Mesh & Leather", Sole: "Rubber", Closure: "Lace-up" },
       sizes: ["UK 6", "UK 7", "UK 8", "UK 9", "UK 10", "UK 11"],
     });
   });
+
   cosmSeed.forEach((p, i) => {
     const img = cosmImgs[i % 4];
     out.push({
@@ -189,12 +186,12 @@ const buildProducts = (): Product[] => {
       brand: p.brand,
       price: p.price,
       stock: 15 + ((i * 6) % 35),
-      rating: 4.2 + ((i * 8) % 8) / 10,
       images: [img, cosmImgs[(i + 1) % 4], cosmImgs[(i + 2) % 4]],
       description: `Reveal your best look with ${p.name}. Long-wearing, skin-friendly, and crafted for everyday confidence.`,
       specifications: { Brand: p.brand, Type: "Cosmetic", Skin: "All Types", Cruelty: "Not on animals" },
     });
   });
+
   return out;
 };
 

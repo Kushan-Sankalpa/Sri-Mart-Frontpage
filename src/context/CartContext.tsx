@@ -34,13 +34,15 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 
   const add: CartCtx["add"] = (p, qty = 1) =>
     setItems((curr) => {
+      if (p.stock <= 0) return curr;
       const ex = curr.find((c) => c.product.id === p.id);
-      if (ex) return curr.map((c) => (c.product.id === p.id ? { ...c, qty: c.qty + qty } : c));
-      return [...curr, { product: p, qty }];
+      const nextQty = Math.min(p.stock, qty);
+      if (ex) return curr.map((c) => (c.product.id === p.id ? { ...c, qty: Math.min(p.stock, c.qty + qty) } : c));
+      return [...curr, { product: p, qty: nextQty }];
     });
   const remove: CartCtx["remove"] = (id) => setItems((c) => c.filter((i) => i.product.id !== id));
   const setQty: CartCtx["setQty"] = (id, qty) =>
-    setItems((c) => c.map((i) => (i.product.id === id ? { ...i, qty: Math.max(1, qty) } : i)));
+    setItems((c) => c.map((i) => (i.product.id === id ? { ...i, qty: Math.min(Math.max(1, qty), Math.max(1, i.product.stock)) } : i)));
   const clear = () => setItems([]);
 
   const count = items.reduce((s, i) => s + i.qty, 0);

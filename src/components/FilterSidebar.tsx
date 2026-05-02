@@ -21,7 +21,7 @@ const FilterSidebar = ({ filters, setFilters, brandsAvailable, showCondition, ma
     arr.includes(val) ? arr.filter((x) => x !== val) : [...arr, val];
 
   return (
-    <aside className="bg-card rounded-2xl border border-border p-6 shadow-soft space-y-7">
+    <aside className="bg-card rounded-lg border border-border p-6 shadow-soft space-y-7">
       <div>
         <h3 className="font-bold text-base mb-3">Category</h3>
         <div className="space-y-2 text-sm">
@@ -114,7 +114,7 @@ const FilterSidebar = ({ filters, setFilters, brandsAvailable, showCondition, ma
 
       <button
         onClick={() => setFilters({ brands: [], conditions: [], inStockOnly: false, priceMax: maxPriceCap, category: filters.category })}
-        className="text-xs uppercase tracking-wider text-primary font-bold hover:underline"
+        className="text-xs uppercase text-primary font-bold hover:underline"
       >
         Clear filters
       </button>

@@ -9,7 +9,7 @@ const ProductGallery = ({ images, alt }: Props) => {
   const [active, setActive] = useState(0);
   return (
     <div className="space-y-4">
-      <div className="aspect-square bg-muted rounded-2xl overflow-hidden border border-border">
+      <div className="aspect-square overflow-hidden rounded-lg border border-border bg-white">
         <img src={images[active]} alt={alt} className="w-full h-full object-contain p-6" />
       </div>
       <div className="grid grid-cols-4 gap-3">
@@ -17,7 +17,7 @@ const ProductGallery = ({ images, alt }: Props) => {
           <button
             key={i}
             onClick={() => setActive(i)}
-            className={`aspect-square rounded-xl overflow-hidden bg-muted border-2 transition-smooth ${
+            className={`aspect-square overflow-hidden rounded-lg bg-white border-2 transition-smooth ${
               i === active ? "border-primary shadow-elegant" : "border-border hover:border-primary/50"
             }`}
           >
